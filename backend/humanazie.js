@@ -7,20 +7,20 @@ import express from "express";
 import cors from "cors";
 
 //! Express instance
-const app = express();
+const app1 = express();
 
 //! Middlewares
 const corsOptions = {
-  origin: ["http://localhost:5174", "http://localhost:5173"],
+  origin: ["http://localhost:5173"],
 };
-app.use(cors(corsOptions));
-app.use(express.json());
+app1.use(cors(corsOptions));
+app1.use(express.json());
 
 // Access your API key as an environment variable
 const genAI = new GoogleGenerativeAI(process.env.KEY);
 
 //! Humanize content route
-app.post("/humanize", async (req, res) => {
+app1.post("/humanize", async (req, res) => {
   const { prompt } = req.body;
 
   try {
@@ -40,6 +40,6 @@ app.post("/humanize", async (req, res) => {
     res.status(500).send("Failed to process and humanize the text");
   }
 });
+export default app1;
 
 //! Start the server
-app.listen(8080, () => console.log("Server is running on port 8080"));

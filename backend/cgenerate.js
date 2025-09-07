@@ -12,7 +12,7 @@ const app = express();
 
 //!Middlewares
 const corsOptions = {
-  origin: ["http://localhost:5174", "http://localhost:5173"],
+  origin: ["http://localhost:5173"],
 };
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -38,6 +38,8 @@ app.post("/cgenerate", async (req, res) => {
     res.status(500).send("Failed to generate content");
   }
 });
+export default app;
+
 
 //!Start the server
-app.listen(8080, () => console.log("Server is running"));
+

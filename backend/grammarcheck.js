@@ -7,20 +7,20 @@ import express from "express";
 import cors from "cors";
 
 //! Express instance
-const app = express();
+const app2 = express();
 
 //! Middlewares
 const corsOptions = {
-  origin: ["http://localhost:5174", "http://localhost:5173"],
+  origin: ["http://localhost:5173"],
 };
-app.use(cors(corsOptions));
-app.use(express.json());
+app2.use(cors(corsOptions));
+app2.use(express.json());
 
 // Access your API key as an environment variable
 const genAI = new GoogleGenerativeAI(process.env.KEY);
 
 //! Generate content route
-app.post("/grammar", async (req, res) => {
+app2.post("/grammar", async (req, res) => {
   const { prompt } = req.body;
 
   try {
@@ -40,6 +40,5 @@ app.post("/grammar", async (req, res) => {
     res.status(500).send("Failed to process and rephrase the prompt");
   }
 });
-
+export default app2;
 //! Start the server
-app.listen(8080, () => console.log("Server is running"));
